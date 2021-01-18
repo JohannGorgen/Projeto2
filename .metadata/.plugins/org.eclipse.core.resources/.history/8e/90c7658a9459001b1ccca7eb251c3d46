@@ -1,0 +1,9 @@
+package Core;
+
+public abstract BasePage {
+	
+	public BasePage(WebDriver driver){
+		PageFactory.iniElements(driver,this);
+	}
+
+}

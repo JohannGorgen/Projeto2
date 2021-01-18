@@ -2,8 +2,7 @@ package Test;
 
 import org.junit.Before;
 import org.junit.Test;
-
-import Core.DriverFactory;
+import Core.BaseTest;
 import Steps.Steps;
 import io.qameta.allure.Description;
 import io.qameta.allure.Epic;
@@ -12,15 +11,15 @@ import io.qameta.allure.Story;
 
 @Epic(value = "DBSerever Teste")
 @Feature(value = "Compra em site de comercio")
-public class TestDBServer {
-
+public class TestDBServer extends BaseTest{
 	//Classe que executa o teste
+
 		private Steps steps;
 		
 		@Before
 		public void initialize(){
 			steps = new Steps();		
-			DriverFactory.getDriver().navigate().to("http://automationpractice.com/");
+			getDriver().navigate().to("http://automationpractice.com/");
 		}	
 		
 		@Test

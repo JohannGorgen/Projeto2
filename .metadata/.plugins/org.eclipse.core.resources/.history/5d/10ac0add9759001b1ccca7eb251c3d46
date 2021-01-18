@@ -1,0 +1,37 @@
+package Test;
+
+import org.junit.Before;
+import org.junit.Test;
+
+import Core.DriverFactory;
+import Steps.Steps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+
+@Epic(value = "DBSerever Teste")
+@Feature(value = "Compra em site de comercio")
+public class TestDBServer {
+
+	//Classe que executa o teste
+		private Steps steps;
+		
+		@Before
+		public void initialize(){
+			steps = new Steps();		
+			DriverFactory.getDriver().navigate().to("http://automationpractice.com/");
+		}	
+		
+		@Test
+		@Story("Compra no site da automationpractice e valida a mesma.")
+		@Description("Acessa o site da automationpractice, pesquisa um item, adiciona no carrinho, cria um cadastro e confirma a compra.")
+		public void BuyItem() throws InterruptedException {
+			steps.searchItem("Blouse");
+			steps.verifyItem();
+			steps.selectItem();
+			steps.addToBasket();
+			steps.verifyBasket();		
+		}	
+		
+}

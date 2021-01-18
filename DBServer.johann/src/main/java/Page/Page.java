@@ -1,172 +1,184 @@
 package Page;
-import java.awt.Button;
 import java.util.List;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
-import org.openqa.selenium.support.ui.Select;
+import Core.BasePage;
 
-public class Page {
+public class Page extends BasePage{
 
-	//Classe onde os passos e elementos são definidos
+	//Classe onde os passos e elementos são definidos	
 
-	private WebDriver driver;		
-
+	WebDriver driver;
+	
 	//Busca e compra
 	    
 		@FindBy(css = "#search_query_top")
 		public WebElement search;
-		//String search = "#search_query_top";	
 		
-		@FindBy(css = "#btnHeaderSearch")
-		public Button searchButton;
-		//String searchButton = "#btnHeaderSearch";
+		@FindBy(css = "button.btn.btn-default.button-search")
+		public WebElement searchButton;
 		
 		@FindBy(css = "div.product-count")
-		public input result;	
-		//String result = "div.product-count";
+		public WebElement result;	
 		
-		@FindBy(css = "img.replace-2x.img-responsive")
-		public Button item;
+		@FindBy(css = "a.button.ajax_add_to_cart_button.btn.btn-default")
+		public WebElement add;
+		
+		@FindBy(css = "a.product-name")
+		public List<WebElement> item;
 		//List <String> item = "img.replace-2x.img-responsive";
 		
+		@FindBy(css = "#fancybox-frame1610988001043")
+		public WebElement viewFrame;
+		
 		@FindBy(css = "button.exclusive")
-		public Button addBasket;
+		public WebElement addBasket;
 		//String addBasket = "button.exclusive";
 		
-		@FindBy(css = "a.btn.btn-default.button.button-medium")
-		public Button continueButton;
+		@FindBy(css = "span.cross")
+		public WebElement closeModal;
+
+		@FindBy(css = "span.ajax_cart_quantity")
+		public List<WebElement> cart;
+		
+		@FindBy(css = "i.icon-chevron-right.right")
+		public List<WebElement> continueButton;
 		//String confirmButton = "a.btn.btn-default.button.button-medium";
 		//String continueButton = "a.btn.btn-default.button.button-medium";
 		
+		@FindBy(css = "a.btn.btn-default.button.button-medium")
+		public WebElement continueButton2;
+		
+		@FindBy(css = "span")
+		public List<WebElement> continueButton3;
+		
 		@FindBy(css = "input.cart_quantity_input.form-control.grey")
-		public input productBasket;
+		public WebElement productBasket;
 		//String productBasket = "input.cart_quantity_input.form-control.grey";
 		
 		@FindBy(css = "product")
-		public List<input> product;
+		public List<WebElement> product;
 		//List <String> productName = "p.product-name";
 		
 		@FindBy(css = "button.btn.btn-default.standard-checkout.button-medium")
-		public Button proceedCheckout;
+		public WebElement proceedCheckout;
 		//String proceedCheckout = "button.btn.btn-default.standard-checkout.button-medium";
 		
 		//Campos do formulário
 		
 		@FindBy(css = "#email_create")
-		public input emailInput;
+		public WebElement emailInput;
 		
 		@FindBy(css = "#SubmitCreate")
-		public Button createAcc;
+		public WebElement createAcc;
 		
 		@FindBy(css = "#id_gender1")
-		public input title;
+		public WebElement title;
 		
 		@FindBy(css = "#customer_firstname")
-		public input customerFirstName;
+		public WebElement customerFirstName;
 		
 		@FindBy(css = "#customer_lastname")
-		public input customerLastName;
+		public WebElement customerLastName;
 		
 		@FindBy(css = "#passwd")
-		public input password;
+		public WebElement password;
 		
 		@FindBy(css = "#days")
-		public select days;
+		public WebElement days;
 		
 		@FindBy(css = "#months")
-		public select months;
+		public WebElement months;
 		
 		@FindBy(css = "#years")
-		public select years;
+		public WebElement years;
 		
 		@FindBy(css = "#newsletter")
-		public input newsletter;
+		public WebElement newsletter;
 		
 		@FindBy(css = "#optin")
-		public input offers;
+		public WebElement offers;
 		
 		@FindBy(css = "#firstname")
-		public input firstName;
+		public WebElement firstName;
 		
 		@FindBy(css = "#lastname")
-		public input lastname;
+		public WebElement lastname;
 		
 		@FindBy(css = "#company")
-		public input company;
+		public WebElement company;
 		
 		@FindBy(css = "#address1")
-		public input address1;
+		public WebElement address1;
 		
 		@FindBy(css = "#address2")
-		public input address2;
+		public WebElement address2;
 		
 		@FindBy(css = "#city")
-		public input city;
+		public WebElement city;
 		
 		@FindBy(css = "#id_state")
-		public select id_state;
+		public WebElement id_state;
 		
 		@FindBy(css = "#postcode")
-		public input postcode;
+		public WebElement postcode;
 		
 		@FindBy(css = "#id_country")
-		public Select id_country;
+		public WebElement id_country;
 		
 		@FindBy(css = "#other")
-		public input other;
+		public WebElement other;
 		
 		@FindBy(css = "#phone")
-		public input phone;
+		public WebElement phone;
 		
 		@FindBy(css = "#phone_mobile")
-		public input phone_mobile;
+		public WebElement phone_mobile;
 		
 		@FindBy(css = "#alias")
-		public input alias;
+		public WebElement alias;
 		
 		@FindBy(css = "#submitAccount")
-		public Button register;	
+		public WebElement register;	
 		
 		//Confirmação de endereço
 		
 		@FindBy(css = "li.address_address1.address_address2")
-		public List<input> confirmAddress1;
+		public List<WebElement> confirmAddress1;
 		
 		@FindBy(css = "li.address_city.address_state_name.address_postcode")
-		public List<input> confirmAddress2;
+		public List<WebElement> confirmAddress2;
 		
 		@FindBy(css = "li.address_country_name")
-		public List<input> confirmAddress3;
+		public List<WebElement> confirmAddress3;
 		
 		@FindBy(css = "button.button.btn.btn-default.button-medium")
-		public Button proceed;	
+		public WebElement proceed;	
 
 		//Confirmação de termos
 		
 		@FindBy(css = "#cgv")
-		public Button terms;
+		public WebElement terms;
 		
 		@FindBy(css = "button.button.btn.btn-default.standard-checkout.button-medium")
-		public Button proceed2;	
+		public WebElement proceed2;	
 		
 		//Confirmação de valor e pagamento
 		
 		@FindBy(css = "#total_price")
-		public input totalPrice;
+		public WebElement totalPrice;
 		
 		@FindBy(css = "a.bankwire")
-		public Button paymentMethod;
+		public WebElement paymentMethod;
 		
 		@FindBy(css = "strong.dark")
-		public List<input> confirmation;		
+		public List<WebElement> confirmation;		
 		
 		//Constructor
 		   public Page(WebDriver driver){
-		       this.driver=driver;
-		       PageFactory.initElements(driver, this);
+		      super(driver);
 		   }
 		   
 }

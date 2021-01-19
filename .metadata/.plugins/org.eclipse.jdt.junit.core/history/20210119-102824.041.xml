@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="DBServer.johann" tests="1" started="1" failures="0" errors="1" ignored="0">
+  <testsuite name="StepsCucumber.TestRunner" time="0.07">
+    <testsuite name="Teste para comprar um item em um site" time="0.07">
+      <testcase name="Compra de produto em um site" classname="Teste para comprar um item em um site" time="0.07">
+        <error>io.cucumber.core.exception.CucumberException: Step [que eu pesquise um (.*) no campo e busca] is defined with 1 parameters at 'StepsCucumber.CompraSteps.que_eu_pesquise_um_item_no_campo_e_busca(java.lang.String)'.
+However, the gherkin step has 0 arguments.
+Step text: que eu pesquise um Blouse no campo e busca&#13;
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.arityMismatch(PickleStepDefinitionMatch.java:83)&#13;
+	at io.cucumber.core.runner.PickleStepDefinitionMatch.runStep(PickleStepDefinitionMatch.java:42)&#13;
+	at io.cucumber.core.runner.ExecutionMode$1.execute(ExecutionMode.java:10)&#13;
+	at io.cucumber.core.runner.TestStep.executeStep(TestStep.java:92)&#13;
+	at io.cucumber.core.runner.TestStep.run(TestStep.java:64)&#13;
+	at io.cucumber.core.runner.PickleStepTestStep.run(PickleStepTestStep.java:51)&#13;
+	at io.cucumber.core.runner.TestCase.run(TestCase.java:104)&#13;
+	at io.cucumber.core.runner.Runner.runPickle(Runner.java:71)&#13;
+	at io.cucumber.junit.PickleRunners$NoStepDescriptions.run(PickleRunners.java:151)&#13;
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:135)&#13;
+	at io.cucumber.junit.FeatureRunner.runChild(FeatureRunner.java:27)&#13;
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)&#13;
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)&#13;
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)&#13;
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:199)&#13;
+	at io.cucumber.junit.Cucumber.runChild(Cucumber.java:90)&#13;
+	at org.junit.runners.ParentRunner$4.run(ParentRunner.java:331)&#13;
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:79)&#13;
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:329)&#13;
+	at org.junit.runners.ParentRunner.access$100(ParentRunner.java:66)&#13;
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:293)&#13;
+	at io.cucumber.junit.Cucumber$RunCucumber.evaluate(Cucumber.java:234)&#13;
+	at org.junit.runners.ParentRunner$3.evaluate(ParentRunner.java:306)&#13;
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:413)&#13;
+	at org.eclipse.jdt.internal.junit4.runner.JUnit4TestReference.run(JUnit4TestReference.java:86)&#13;
+	at org.eclipse.jdt.internal.junit.runner.TestExecution.run(TestExecution.java:38)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:459)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.runTests(RemoteTestRunner.java:678)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.run(RemoteTestRunner.java:382)&#13;
+	at org.eclipse.jdt.internal.junit.runner.RemoteTestRunner.main(RemoteTestRunner.java:192)&#13;
+&#13;
+</error>
+      </testcase>
+    </testsuite>
+  </testsuite>
+</testrun>

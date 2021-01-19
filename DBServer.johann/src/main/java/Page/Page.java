@@ -4,7 +4,6 @@ import java.util.List;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import Core.BasePage;
@@ -14,7 +13,6 @@ public class Page extends BasePage{
 
 	//Classe onde os elementos são definidos	
 
-	WebDriver driver;
 	public WebDriverWait wait = new WebDriverWait(BaseTest.getDriver(), 10);
 	
 	//Busca e compra
@@ -69,116 +67,6 @@ public class Page extends BasePage{
 		
 		@FindBy(css = "button.btn.btn-default.standard-checkout.button-medium")
 		public WebElement proceedCheckout;
-		
-		//Campos do formulário
-		
-		@FindBy(css = "#email_create")
-		public WebElement emailInput;
-		
-		@FindBy(css = "#SubmitCreate")
-		public WebElement createAcc;
-		
-		@FindBy(css = "#id_gender1")
-		public WebElement title1;
-		
-		@FindBy(css = "#id_gender2")
-		public WebElement title2;
-		
-		@FindBy(css = "#customer_firstname")
-		public WebElement customerFirstName;
-		
-		@FindBy(css = "#customer_lastname")
-		public WebElement customerLastName;
-		
-		@FindBy(css = "#passwd")
-		public WebElement password;
-		
-		@FindBy(css = "#days")
-		public WebElement days;
-		
-		public Page selectDay(String day){
-			Select daysSelect = new Select(days);
-			daysSelect.selectByValue(day);
-			return this;
-		}
-		
-		@FindBy(css = "#months")
-		public WebElement months;
-		
-		public Page selectMonth(String month){
-			Select monthSelect = new Select(months);
-			monthSelect.selectByValue(month);
-			return this;
-		}
-		
-		@FindBy(css = "#years")
-		public WebElement years;
-		
-		public Page selectYear(String year){
-			Select yearSelect = new Select(years);
-			yearSelect.selectByValue(year);
-			return this;
-		}
-		
-		@FindBy(css = "#newsletter")
-		public WebElement newsletter;
-		
-		@FindBy(css = "#optin")
-		public WebElement offers;
-		
-		@FindBy(css = "#firstname")
-		public WebElement firstName;
-		
-		@FindBy(css = "#lastname")
-		public WebElement lastname;
-		
-		@FindBy(css = "#company")
-		public WebElement company;
-		
-		@FindBy(css = "#address1")
-		public WebElement address1;
-		
-		@FindBy(css = "#address2")
-		public WebElement address2;
-		
-		@FindBy(css = "#city")
-		public WebElement city;
-		
-		@FindBy(css = "#id_state")
-		public WebElement id_state;
-		
-		public Page selectState(String state){
-			Select stateSelect = new Select(id_state);
-			stateSelect.selectByValue(state);
-			return this;
-		}		
-		
-		@FindBy(css = "#postcode")
-		public WebElement postcode;
-		
-		@FindBy(css = "#id_country")
-		public WebElement id_country;
-		
-		public Page selectCountry(String country){
-			Select countrySelect = new Select(id_country);
-			countrySelect.selectByValue(country);
-			return this;
-		}
-		
-		@FindBy(css = "#other")
-		public WebElement other;
-		
-		@FindBy(css = "#phone")
-		public WebElement phone;
-		
-		@FindBy(css = "#phone_mobile")
-		public WebElement phone_mobile;
-		
-		@FindBy(css = "#alias")
-		public WebElement alias;
-		
-		@FindBy(css = "#submitAccount")
-		public WebElement register;	
 		
 		//Confirmação de endereço
 		

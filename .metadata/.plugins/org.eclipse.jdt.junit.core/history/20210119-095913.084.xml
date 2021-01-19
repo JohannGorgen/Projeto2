@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="TestRunner" project="DBServer.johann" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testsuite name="StepsCucumber.TestRunner" time="0.142">
+    <testsuite name="Teste para comprar um item em um site" time="0.142">
+      <testcase name="Compra de produto em um site" classname="Teste para comprar um item em um site" time="0.142"/>
+    </testsuite>
+  </testsuite>
+</testrun>

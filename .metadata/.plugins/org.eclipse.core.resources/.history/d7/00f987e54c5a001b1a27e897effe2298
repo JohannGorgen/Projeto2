@@ -1,0 +1,13 @@
+Feature: Teste para comprar um item em um site
+
+  Scenario: Compra de produto em um site
+    Given Dado que eu pesquise um item no campo e busca
+    And E verifique a quantidade de registros da pesqusa
+    And E seleciono o item desejado
+    When Quando adiciono o item no carrinho
+    Then Então o mesmo deve estar no carrinho
+    And E sigo para o cadastro
+    And E preencho o formulario
+    And E valido o endereço
+    And E aceitos os termos e valido o valor da compra
+    Then Então termino a compra

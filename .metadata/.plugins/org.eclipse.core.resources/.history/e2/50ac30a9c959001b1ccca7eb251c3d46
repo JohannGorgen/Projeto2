@@ -1,0 +1,85 @@
+package Steps;
+
+import org.junit.Assert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import Core.BaseTest;
+import Page.Page;
+import io.qameta.allure.Step;
+
+public class Steps {
+
+	private WebDriver driver;
+	Page page = new Page(driver);
+	Actions action = new Actions(BaseTest.getDriver());
+	
+		
+	@Step("Dado que eu pesquise um item no campo e busca.")
+	public Steps searchItem(String text) throws InterruptedException{
+		String a = page.search.toString();
+		System.out.println("AQUI OH >>>  "+ a);
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.search));
+		page.search.clear();
+		page.search.sendKeys(text);
+		page.searchButton.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.result));
+		return this;
+	}
+	
+	@Step("E verifique a quantidade de registros da pesqusa.")
+	public Steps verifyItem(){
+		page.result.getText();
+		System.out.println("Resultado pesquisa >>>>> " + page.result.getText());
+		Assert.assertEquals("Showing 1 - 1 of 1 item", page.result.getText());
+		return this;
+	}
+	
+	@Step("E seleciono o item desejado.")
+	public Steps selectItem(){
+		page.item.get(8).click();
+		System.out.println("CLICOU");
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.addBasket));
+		return this;
+	}
+	
+	@Step("Quando adiciono o item no carrinho.")
+	public Steps addToBasket(){
+		page.addBasket.click();
+		System.out.println("CLICOU2");
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.continueButton2));
+//		action.moveToElement(page.closeModal).build().perform();
+//		page.closeModal.click();
+//		page.cart.get(0).click();
+		action.moveToElement(page.continueButton2).build();
+		page.continueButton2.click();
+//		action.moveToElement(page.continueButton.get(1)).build();
+//		page.continueButton.get(1).click();
+//		action.moveToElement(page.continueButton3.get(29)).build();
+//		page.continueButton3.get(29).click();
+//		DriverFactory.getDriver().findElement(By.cssSelector(continueButton)).click();
+//		wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(productBasket)));
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceedCheckout));
+		return this;
+	}
+	
+	@Step("Então o mesmo deve estar no carrinho.")
+	public Steps verifyBasket(){
+//		String result = DriverFactory.getDriver().findElement(By.cssSelector(productBasket)).getText();
+		System.out.println("Resultado subtotal >>>>> " + page.productName.getText());
+		Assert.assertEquals("1", page.productName.getText());
+		return this;
+	}	
+	
+//	@Step("E sigo para o pagamento.")
+//	public Steps payment(){
+//		String result = DriverFactory.getDriver().findElement(By.cssSelector(productBasket)).getText();
+//		System.out.println("Resultado subtotal >>>>> " + DriverFactory.getDriver().findElement(By.cssSelector(productBasket)).getText());
+//		Assert.assertEquals("1", result);
+//		return this;
+//	}	
+
+}

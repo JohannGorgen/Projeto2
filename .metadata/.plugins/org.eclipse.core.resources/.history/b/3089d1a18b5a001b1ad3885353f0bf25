@@ -1,0 +1,30 @@
+package rest;
+
+import static io.restassured.RestAssured.*;
+import static org.hamcrest.Matchers.*;
+
+import org.junit.Test;
+
+public class RestTest {
+	
+	@Test
+	public void TesteAPI() {
+			
+	given()
+	.when()
+		.get("http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart")
+	.then()
+		.statusCode(200)
+		.body(is(not(nullValue())))
+		//.body(is("Ola Mundo!"))
+		.body(containsString("shopping_cart"))
+		.body("shopping_cart", is(1))
+		.body("total_shipping", is("2.00"))
+		.body("sku", hasSize(3))
+		.body("sku[0]", is("demo_2"))
+		.body("sku", hasItem("demo_"));
+	
+		
+
+	}
+}

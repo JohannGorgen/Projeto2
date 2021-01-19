@@ -1,0 +1,35 @@
+package rest;
+
+import org.junit.Test;
+
+import io.restassured.RestAssured;
+import io.restassured.http.Method;
+import io.restassured.response.Response;
+import io.restassured.response.Validatable;
+import io.restassured.response.ValidatableResponse;
+
+public class RestTest {
+	
+	@Test
+	public void Teste() {
+		Response request = RestAssured.request(Method.GET, "http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart");
+		System.out.println(request.getBody().asString());
+		
+		ValidatableResponse validar = request.then();
+		validar.statusCode(200);
+	
+		RestAssured.get("http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart").then().statusCode(201);
+		
+	
+//	given()
+//	.when()
+//		.get("http://5d9cc58566d00400145c9ed4.mockapi.io/shopping_cart")
+//	.then()
+////		.assertThat()
+//		.statusCode(200)
+//		.body(is("Ola Mundo!"))
+//		.body(containsString("Mundo"))
+//		.body(is(not(nullValue())));
+
+	}
+}

@@ -1,5 +1,7 @@
 package Test;
 
+import java.util.Date;
+
 import org.junit.Before;
 import org.junit.Test;
 import Core.BaseTest;
@@ -26,11 +28,20 @@ public class TestDBServer extends BaseTest{
 		@Story("Compra no site da automationpractice e valida a mesma.")
 		@Description("Acessa o site da automationpractice, pesquisa um item, adiciona no carrinho, cria um cadastro e confirma a compra.")
 		public void BuyItem() throws InterruptedException {
+			Date date = new Date();
+			String date1= dateFormat.format(date);
+			System.out.println("DATA AQUI >>>> " + date1);
+			
 			steps.searchItem("Blouse");
 			steps.verifyItem();
 			steps.selectItem();
 			steps.addToBasket();
-			steps.verifyBasket();		
+			steps.verifyBasket();
+			steps.register("joaodasilva"+date1+"@teste.com.br");
+			steps.fillForm("joao", "da silva", "12345", "15", "5", "2000", "DBServer", "Rua das Palmeiras, numero 100", "Bairro das Arvores", "Tokio", "2", "00000", "21", "8989898989");
+			steps.verifyAddress();
+			steps.verifyPriceAndAceptTerms();
+			steps.finish();
 		}	
 		
 }

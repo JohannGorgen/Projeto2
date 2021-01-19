@@ -2,7 +2,8 @@ package Core;
 
 import java.io.File;
 import java.io.IOException;
-
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import org.apache.commons.io.FileUtils;
 import org.junit.After;
 import org.junit.Rule;
@@ -48,4 +49,7 @@ public class BaseTest {
 			
 			killDriver();
 		}
+		
+		protected DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+		
 }

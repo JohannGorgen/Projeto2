@@ -1,0 +1,71 @@
+package StepsCucumber;
+
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class CompraSteps {
+	
+	@Given("que eu pesquise um item no campo e busca")
+	public void que_eu_pesquise_um_item_no_campo_e_busca() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@And("verifique a quantidade de registros da pesqusa")
+	public void verifique_a_quantidade_de_registros_da_pesqusa() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@And("seleciono o item desejado")
+	public void seleciono_o_item_desejado() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@When("adiciono o item no carrinho")
+	public void adiciono_o_item_no_carrinho() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("o mesmo deve estar no carrinho")
+	public void o_mesmo_deve_estar_no_carrinho() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@And("sigo para o cadastro")
+	public void sigo_para_o_cadastro() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@And("preencho o formulario")
+	public void preencho_o_formulario() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@And("valido o endere?o")
+	public void valido_o_endere_o() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@And("aceitos os termos e valido o valor da compra")
+	public void aceitos_os_termos_e_valido_o_valor_da_compra() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+	@Then("termino a compra")
+	public void termino_a_compra() {
+	    // Write code here that turns the phrase above into concrete actions
+	    throw new io.cucumber.java.PendingException();
+	}
+
+
+}

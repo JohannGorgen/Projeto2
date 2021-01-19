@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import Core.BaseTest;
+import Page.FormPage;
 import Page.Page;
 import io.qameta.allure.Step;
 
@@ -13,13 +14,12 @@ public class Steps {
 	
 	private WebDriver driver;
 	Page page = new Page(driver);
+	FormPage form = new FormPage(driver);
 	Actions action = new Actions(BaseTest.getDriver());
 	
 		
 	@Step("Dado que eu pesquise um item no campo e busca.")
 	public Steps searchItem(String text) throws InterruptedException{
-		String a = page.search.toString();
-		System.out.println("AQUI OH >>>  "+ a);
 		page.wait.until(ExpectedConditions.elementToBeClickable(page.search));
 		page.search.clear();
 		page.search.sendKeys(text);
@@ -65,31 +65,31 @@ public class Steps {
 	@Step("E sigo para o cadastro.")
 	public Steps register(String mail){
 		page.proceed2.click();
-		page.wait.until(ExpectedConditions.elementToBeClickable(page.emailInput));
-		page.emailInput.sendKeys(mail);
-		page.createAcc.click();
-		page.wait.until(ExpectedConditions.elementToBeClickable(page.customerFirstName));
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.emailInput));
+		form.emailInput.sendKeys(mail);
+		form.createAcc.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.customerFirstName));
 		return this;
 	}
 	
 	@Step("E preencho o formulario.")
 	public Steps fillForm(String customerFirstname, String customerLastName, String password, String day, String month, String year, String company, String address1, String address2, String city, String state, String postcode, String country, String phone){
-		page.title1.click();
-		page.customerFirstName.sendKeys(customerFirstname);
-		page.customerLastName.sendKeys(customerLastName);
-		page.password.sendKeys(password);
-		page.selectDay(day);
-		page.selectMonth(month);
-		page.selectYear(year);
-		page.company.sendKeys(company);
-		page.address1.sendKeys(address1);
-		page.address2.sendKeys(address2);
-		page.city.sendKeys(city);
-		page.selectState(state);
-		page.postcode.sendKeys(postcode);
-		page.selectCountry(country);
-		page.phone_mobile.sendKeys(phone);
-		page.register.click();
+		form.title1.click();
+		form.customerFirstName.sendKeys(customerFirstname);
+		form.customerLastName.sendKeys(customerLastName);
+		form.password.sendKeys(password);
+		form.selectDay(day);
+		form.selectMonth(month);
+		form.selectYear(year);
+		form.company.sendKeys(company);
+		form.address1.sendKeys(address1);
+		form.address2.sendKeys(address2);
+		form.city.sendKeys(city);
+		form.selectState(state);
+		form.postcode.sendKeys(postcode);
+		form.selectCountry(country);
+		form.phone_mobile.sendKeys(phone);
+		form.register.click();
 		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed));
 		return this;
 	}

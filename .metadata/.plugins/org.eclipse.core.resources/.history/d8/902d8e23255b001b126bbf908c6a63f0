@@ -1,0 +1,125 @@
+package StepsCucumber;
+
+import java.io.IOException;
+import java.util.Date;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import Core.BaseTest;
+import Page.FormPage;
+import Page.Page;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class CompraSteps {
+	
+	private WebDriver driver;
+	Page page = new Page(driver);
+	FormPage form = new FormPage(driver);
+	Actions action = new Actions(BaseTest.getDriver());
+	
+	@When("^eu pesquiso o (.*)$")
+	public void eu_pesquiso_o_produto(String produto){
+		BaseTest.getDriver().navigate().to("http://automationpractice.com/");
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.search));
+		page.search.clear();
+		page.search.sendKeys(produto);
+		page.searchButton.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.result));
+	}
+	
+	@Then("eu devo ver o <produto> no resultado da pesquisa")
+	public void eu_devo_ver_o_produto_no_resultado_da_pesquisa() {
+		page.result.getText();
+		Assert.assertEquals("Showing 1 - 1 of 1 item", page.result.getText());
+	}
+	
+	@When("seleciono o produto desejado")
+	public void seleciono_o_produto_desejado() {
+		page.item.get(8).click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.addBasket));
+	}
+	
+	@And("adiciono o produto no carrinho")
+	public void adiciono_o_produto_no_carrinho() {
+		page.addBasket.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.continueButton2));
+		action.moveToElement(page.continueButton2).build();
+		page.continueButton2.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.productName.get(1)));
+	}
+	
+	@Then("o mesmo deve estar no carrinho")
+	public void o_mesmo_deve_estar_no_carrinho() {
+		Assert.assertEquals("Blouse", page.productName.get(1).getText());
+		Assert.assertEquals("$29.00", page.price.getText());
+	}
+
+	@When("eu sigo para o cadastro de usuario")
+	public void eu_sigo_para_o_cadastro_de_usuario() {
+		Date date = new Date();
+		String date1= BaseTest.dateFormat.format(date);
+		
+		page.proceed2.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.emailInput));
+		form.emailInput.sendKeys("joaodasilva"+date1+"@teste.com.br");
+		form.createAcc.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.customerFirstName));
+	}
+	
+	@And("eu preencho o formulario")
+	public void eu_preencho_o_formulario() {
+		form.title1.click();
+		form.customerFirstName.sendKeys("joao");
+		form.customerLastName.sendKeys("da silva");
+		form.password.sendKeys("12345");
+		form.selectDay("15");
+		form.selectMonth("5");
+		form.selectYear("2000");
+		form.company.sendKeys("DBServer");
+		form.address1.sendKeys("Rua das Palmeiras, numero 100");
+		form.address2.sendKeys("Bairro das Arvores");
+		form.city.sendKeys("Tokio");
+		form.selectState("2");
+		form.postcode.sendKeys("00000");
+		form.selectCountry("21");
+		form.phone_mobile.sendKeys("8989898989");
+		form.register.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed));
+	}
+	
+	@Then("eu devo ver o endereco cadastrado anteriormente")
+	public void eu_devo_ver_o_endereco_cadastrado_anteriormente() {
+		Assert.assertEquals("Rua das Palmeiras, numero 100 Bairro das Arvores", page.confirmAddress1.get(0).getText());
+		Assert.assertEquals("Tokio, Alaska 00000", page.confirmAddress2.get(0).getText());
+		Assert.assertEquals("United States", page.confirmAddress3.get(0).getText());
+		page.proceed.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed2));
+	}
+	
+	@When("aceito os termos")
+	public void aceito_os_termos() {
+		page.terms.click();
+		page.proceed2.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.paymentMethod));
+	}
+	
+	@Then("valido o valor da compra")
+	public void valido_o_valor_da_compra() {
+		Assert.assertEquals("$29.00", page.totalPrice.getText());;
+	}
+	
+	@And("termino a compra")
+	public void termino_a_compra() throws IOException, InterruptedException {
+		page.paymentMethod.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed));
+		page.proceed.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.confirmation.get(5)));
+		Assert.assertEquals("Your order on My Store is complete.", page.confirmation.get(5).getText());
+		BaseTest.killDriver();
+	}
+}

@@ -1,0 +1,23 @@
+Feature: Compra de um produto (fluxo completo)
+
+  Scenario: Pesquisa de produto
+    When eu pesquiso o <produto>
+    Then eu devo ver o <produto> no resultado da pesquisa
+    
+  Scenario: Adição de produto no carrinho  
+    When adiciono o produto desejado
+    And adiciono o produto no carrinho
+    Then o mesmo deve estar no carrinho
+  
+  Scenario: Cadastro de usuário  
+    When sigo para o cadastro
+    And preencho o formulario
+    Then valido o endereco
+    
+  Scenario: Finalização da compra    
+    When aceitos os termos e valido o valor da compra
+    Then termino a compra
+
+    Examples:
+    |  produto  |
+    | Blouse    |

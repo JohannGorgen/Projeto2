@@ -1,0 +1,74 @@
+package StepsCucumber;
+
+import java.io.IOException;
+import java.util.Date;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
+import Core.BaseTest;
+import Page.FormPage;
+import Page.Page;
+import io.cucumber.java.en.And;
+import io.cucumber.java.en.Given;
+import io.cucumber.java.en.Then;
+import io.cucumber.java.en.When;
+
+public class CompraSteps {
+	
+	private WebDriver driver;
+	Page page = new Page(driver);
+	FormPage form = new FormPage(driver);
+	Actions action = new Actions(BaseTest.getDriver());
+	
+	@When("^eu pesquiso o (.*)$")
+	public void eu_pesquiso_o_produto(String produto){
+		BaseTest.getDriver().navigate().to("http://automationpractice.com/");
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.search));
+		page.search.clear();
+		page.search.sendKeys(produto);
+		page.searchButton.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.result));
+	}
+	
+	@Then("eu devo ver o <produto> no resultado da pesquisa")
+	public void eu_devo_ver_o_produto_no_resultado_da_pesquisa() {
+		page.result.getText();
+		Assert.assertEquals("Showing 1 - 1 of 1 item", page.result.getText());
+	}
+	
+	@When("seleciono o produto desejado")
+	public void seleciono_o_produto_desejado() {
+		page.item.get(8).click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.addBasket));
+	}
+	
+	@When("adiciono o produto no carrinho")
+	public void adiciono_o_produto_no_carrinho() {
+		page.addBasket.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.continueButton2));
+		action.moveToElement(page.continueButton2).build();
+		page.continueButton2.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.productName.get(1)));
+	}
+	
+	@Then("o mesmo deve estar no carrinho")
+	public void o_mesmo_deve_estar_no_carrinho() {
+		Assert.assertEquals("Blouse", page.productName.get(1).getText());
+		Assert.assertEquals("$29.00", page.price.getText());
+	}
+
+	@When("eu sigo para o cadastro de usuario")
+	public void eu_sigo_para_o_cadastro_de_usuario() {
+		Date date = new Date();
+		String date1= BaseTest.dateFormat.format(date);
+		
+		page.proceed2.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.emailInput));
+		form.emailInput.sendKeys("joaodasilva"+date1+"@teste.com.br");
+		form.createAcc.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.customerFirstName));
+	}
+}

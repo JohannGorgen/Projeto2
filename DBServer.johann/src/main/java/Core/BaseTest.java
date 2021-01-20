@@ -15,41 +15,38 @@ import org.openqa.selenium.chrome.ChromeDriver;
 
 public class BaseTest {
 
-	//Classe base para execução dos testes. Ela tira screenshot da tela ao final do teste e fecha o navegador
-	//Classe centralizadora do webdriver e chromedriver
-	
 	private static WebDriver driver;
-			
-	public static WebDriver getDriver(){
-		if(driver == null){
+
+	public static WebDriver getDriver() {
+		if (driver == null) {
 			driver = new ChromeDriver();
 			driver.manage().window().maximize();
-		}		
+		}
 		return driver;
 	}
-	
+
 	public static void killDriver() {
-		if(driver != null){
+		if (driver != null) {
 			driver.quit();
 			driver = null;
 		}
-		
+
 	}
-	
-		@Rule
-		public TestName testName = new TestName();	
-		
-		@After
-		public void end() throws IOException, InterruptedException{
-			TakesScreenshot ss = (TakesScreenshot) getDriver();
-			File arquivo = ss.getScreenshotAs(OutputType.FILE);
-			FileUtils.copyFile(arquivo, new File("target\\screenshot\\" +  testName.getMethodName() + ".jpg"));
-			
-			Thread.sleep(3000);
-			
-			killDriver();
-		}
-		
-		public static DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
-		
+
+	@Rule
+	public TestName testName = new TestName();
+
+	@After
+	public void end() throws IOException, InterruptedException {
+		TakesScreenshot ss = (TakesScreenshot) getDriver();
+		File arquivo = ss.getScreenshotAs(OutputType.FILE);
+		FileUtils.copyFile(arquivo, new File("target\\screenshot\\" + testName.getMethodName() + ".jpg"));
+
+		Thread.sleep(3000);
+
+		killDriver();
+	}
+
+	public static DateFormat dateFormat = new SimpleDateFormat("ddMMyyyyHHmmss");
+
 }

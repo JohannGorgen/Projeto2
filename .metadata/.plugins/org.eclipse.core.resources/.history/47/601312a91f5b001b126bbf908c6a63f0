@@ -1,0 +1,47 @@
+package Test;
+
+import java.util.Date;
+
+import org.junit.Before;
+import org.junit.Test;
+import Core.BaseTest;
+import Steps.Steps;
+import io.qameta.allure.Description;
+import io.qameta.allure.Epic;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+
+@Epic(value = "DBSerever Teste")
+@Feature(value = "Compra em site de comercio")
+public class TestDBServer extends BaseTest{
+	//Classe que executa o teste
+
+		private Steps steps;
+		
+		@Before
+		public void initialize(){
+			steps = new Steps();		
+			getDriver().navigate().to("http://automationpractice.com/");
+		}	
+		
+		@Test
+		@Story("Compra no site da automationpractice e valida a mesma.")
+		@Description("Acessa o site da automationpractice, pesquisa um item, adiciona no carrinho, cria um cadastro e confirma a compra.")
+		public void BuyItem() throws InterruptedException {
+			Date date = new Date();
+			String date1= dateFormat.format(date);
+			System.out.println("DATA AQUI >>>> " + date1);
+			
+			steps.searchItem("Blouse");
+			steps.verifyItem();
+			steps.selectItem();
+			steps.addToBasket();
+			steps.verifyBasket();
+			steps.register("joaodasilva"+date1+"@teste.com.br");
+			steps.fillForm("joao", "da silva", "12345", "15", "5", "2000", "DBServer", "Rua das Palmeiras, numero 100", "Bairro das Arvores", "Tokio", "2", "00000", "21", "8989898989");
+			steps.verifyAddress();
+			steps.verifyPriceAndAceptTerms();
+			steps.finish();
+		}	
+		
+}

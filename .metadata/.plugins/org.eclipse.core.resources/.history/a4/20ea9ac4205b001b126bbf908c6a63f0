@@ -1,0 +1,137 @@
+package Steps;
+
+import org.junit.Assert;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import Core.BaseTest;
+import Page.FormPage;
+import Page.Page;
+import io.qameta.allure.Step;
+
+public class Steps {
+
+	private Page page;
+	private FormPage form;
+	private Actions action;
+	
+	public Steps(WebDriver driver) {
+		 page = new Page(driver);
+		 form = new FormPage(driver);
+		 action = new Actions(driver);
+		 
+	}	
+
+	@Step("Dado que eu pesquise um item no campo e busca.")
+	public Steps searchItem(String text) throws InterruptedException {
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.search));
+		page.search.clear();
+		page.search.sendKeys(text);
+		page.searchButton.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.result));
+		return this;
+	}
+
+	@Step("E verifique a quantidade de registros da pesqusa.")
+	public Steps verifyItem() {
+		page.result.getText();
+		System.out.println("Resultado pesquisa >>>>> " + page.result.getText());
+		Assert.assertEquals("Showing 1 - 1 of 1 item", page.result.getText());
+		return this;
+	}
+
+	@Step("E seleciono o item desejado.")
+	public Steps selectItem() {
+		page.item.get(8).click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.addBasket));
+		return this;
+	}
+
+	@Step("Quando adiciono o item no carrinho.")
+	public Steps addToBasket() {
+		page.addBasket.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.continueButton2));
+		action.moveToElement(page.continueButton2).build();
+		page.continueButton2.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.productName.get(1)));
+		return this;
+	}
+
+	@Step("Então o mesmo deve estar no carrinho.")
+	public Steps verifyBasket() {
+		System.out.println("Nome do Produto >>>>> " + page.productName.get(1).getText());
+		Assert.assertEquals("Blouse", page.productName.get(1).getText());
+		System.out.println("Preço Total >>>>> " + page.price.getText());
+		Assert.assertEquals("$29.00", page.price.getText());
+		return this;
+	}
+
+	@Step("E sigo para o cadastro.")
+	public Steps register(String mail) {
+		page.proceed2.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.emailInput));
+		form.emailInput.sendKeys(mail);
+		form.createAcc.click();
+		form.wait.until(ExpectedConditions.elementToBeClickable(form.customerFirstName));
+		return this;
+	}
+
+	@Step("E preencho o formulario.")
+	public Steps fillForm(String customerFirstname, String customerLastName, String password, String day, String month,
+			String year, String company, String address1, String address2, String city, String state, String postcode,
+			String country, String phone) {
+		form.title1.click();
+		form.customerFirstName.sendKeys(customerFirstname);
+		form.customerLastName.sendKeys(customerLastName);
+		form.password.sendKeys(password);
+		form.selectDay(day);
+		form.selectMonth(month);
+		form.selectYear(year);
+		form.company.sendKeys(company);
+		form.address1.sendKeys(address1);
+		form.address2.sendKeys(address2);
+		form.city.sendKeys(city);
+		form.selectState(state);
+		form.postcode.sendKeys(postcode);
+		form.selectCountry(country);
+		form.phone_mobile.sendKeys(phone);
+		form.register.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed));
+		return this;
+	}
+
+	@Step("E valido o endereço.")
+	public Steps verifyAddress() {
+		System.out.println("Endereço 1 >>>>> " + page.confirmAddress1.get(0).getText());
+		Assert.assertEquals("Rua das Palmeiras, numero 100 Bairro das Arvores", page.confirmAddress1.get(0).getText());
+		System.out.println("Endereço 2 >>>>> " + page.confirmAddress2.get(0).getText());
+		Assert.assertEquals("Tokio, Alaska 00000", page.confirmAddress2.get(0).getText());
+		System.out.println("Endereço 3 >>>>> " + page.confirmAddress3.get(0).getText());
+		Assert.assertEquals("United States", page.confirmAddress3.get(0).getText());
+		page.proceed.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed2));
+		return this;
+	}
+
+	@Step("E aceitos os termos e valido o valor da compra.")
+	public Steps verifyPriceAndAceptTerms() {
+		page.terms.click();
+		page.proceed2.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.paymentMethod));
+		System.out.println("Preço Total >>>>> " + page.totalPrice.getText());
+		Assert.assertEquals("$29.00", page.totalPrice.getText());
+		return this;
+	}
+
+	@Step("Então termino a compra.")
+	public Steps finish() {
+		page.paymentMethod.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.proceed));
+		page.proceed.click();
+		page.wait.until(ExpectedConditions.elementToBeClickable(page.confirmation.get(5)));
+		System.out.println("Texto final >>>>> " + page.confirmation.get(5).getText());
+		Assert.assertEquals("Your order on My Store is complete.", page.confirmation.get(5).getText());
+		return this;
+	}
+
+}

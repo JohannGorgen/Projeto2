@@ -19,7 +19,6 @@
 <fullyQualifiedTypeName name="io.qameta.allure.Description"/>
 <fullyQualifiedTypeName name="org.junit.Before"/>
 <fullyQualifiedTypeName name="org.junit.Assert"/>
-<fullyQualifiedTypeName name="org.junit.Test"/>
 <fullyQualifiedTypeName name="Page.Page"/>
 <fullyQualifiedTypeName name="Core.DriverFactory"/>
 <fullyQualifiedTypeName name="org.openqa.selenium.By"/>
@@ -44,4 +43,9 @@
 <fullyQualifiedTypeName name="Core.BaseTest"/>
 <fullyQualifiedTypeName name="Core.BasePage"/>
 <fullyQualifiedTypeName name="Page.FormPage"/>
+<fullyQualifiedTypeName name="io.restassured.response.Validatable"/>
+<fullyQualifiedTypeName name="io.restassured.response.ValidatableResponse"/>
+<fullyQualifiedTypeName name="io.restassured.RestAssured"/>
+<fullyQualifiedTypeName name="org.junit.Test"/>
+<fullyQualifiedTypeName name="org.hamcrest.Matchers"/>
 </qualifiedTypeNameHistroy>

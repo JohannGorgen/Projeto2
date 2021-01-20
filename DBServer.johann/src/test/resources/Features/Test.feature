@@ -1,17 +1,26 @@
-Feature: Teste para comprar um item em um site
+Feature: Compra de um produto (fluxo completo)
 
-  Scenario: Compra de produto em um site
-    Given que eu pesquise um <item> no campo e busca
-    And verifique a quantidade de registros da pesqusa
-    And seleciono o item desejado
-    When adiciono o item no carrinho
+  Scenario: Pesquisa de produto
+    When eu pesquiso o <produto>
+    Then eu devo ver o produto no resultado da pesquisa
+    
+    Examples:
+    |  produto   |
+    |  Blouse    |
+    
+  Scenario: Adição de produto no carrinho  
+    When seleciono o produto desejado
+    And adiciono o produto no carrinho
     Then o mesmo deve estar no carrinho
-    And sigo para o cadastro
-    And preencho o formulario
-    And valido o endereco
-    And aceitos os termos e valido o valor da compra
+  
+  Scenario: Cadastro de usuário  
+    When eu sigo para o cadastro de usuario
+    And eu preencho o formulario
+    Then eu devo ver o endereco cadastrado anteriormente
+    
+  Scenario: Finalização da compra    
+    When aceito os termos
+    And valido o valor da compra
     Then termino a compra
 
-    Examples:
-    |  item  |
-    | Blouse |
+  
